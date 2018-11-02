@@ -15,10 +15,10 @@ Route::get('/', ['as' => 'home', function () {
     return view('welcome');
 }]);
 
-Route::get('/dashboard', ['as' => 'dashboard', function () {
-    return view('dashboard/main');
-}])->middleware('islogged');
+Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index'])->middleware('islogged');
+Route::get('/dashboard/privacy', ['as' => 'privacy', 'uses' => 'DashboardController@privacy'])->middleware('islogged');
+Route::get('/dashboard/exchange', ['as' => 'exchange', 'uses' => 'DashboardController@exchange'])->middleware('islogged');
 
-Route::get('/login', "LoginController@index")->middleware('islogged');
+Route::get('/login', "LoginController@index");
 Route::post('/login', "LoginController@show");
 Route::get('/logout', "Logout@index");

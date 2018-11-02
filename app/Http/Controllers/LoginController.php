@@ -23,7 +23,7 @@ class LoginController extends Controller
         }
         else {
             $error = '';
-            return view('auth\login')->with('error');
+            return view('auth\login')->with('error', $error);
         }
     }
 
@@ -74,7 +74,7 @@ class LoginController extends Controller
             return redirect()->route('dashboard');
         }
         else {
-            $error = "Неверный логин и пароль";
+            $error = "Неверный логин или пароль";
             return view('auth\login')->with('error', $error);
         }
 

@@ -35,6 +35,7 @@ class IsLogged
                 $obj = json_decode($body);
                 setcookie('uid', $obj->id, time()+60*60);
                 setcookie('auth', $auth, time()+60*60);
+                return $next($request);
             }
             else {
                 setcookie("uid", "", time() - 100);
@@ -42,7 +43,6 @@ class IsLogged
                 return redirect()->route('home');
             }
         }
-
-        return $next($request);
+        else return redirect('/login');
     }
 }
